@@ -31,8 +31,7 @@ const AddRunForm = ({ onRunAdded }) => {
       await axios.post(`${API_BASE}/api/runs`, formData);
 
       setSuccess(true);
-      onRunAdded();  // callback to refresh list
-      // Reset form
+      onRunAdded();
       setDistance('');
       setTime('');
       setLocation('');

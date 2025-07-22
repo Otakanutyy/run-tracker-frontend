@@ -10,11 +10,11 @@ const DashboardPage = () => {
   const [summary, setSummary] = useState(null);
   const [runs, setRuns] = useState([]);
 
+  const API_BASE = process.env.REACT_APP_API_BASE_URL;
+
   useEffect(() => {
 
     if (!user_id) return;
-
-    const API_BASE = process.env.REACT_APP_API_BASE_URL;
 
     axios.get(`${API_BASE}/api/summary?user_id=${user_id}`)
         .then(res => setSummary(res.data))
@@ -74,7 +74,7 @@ const DashboardPage = () => {
                         }}
                         >
                         <img
-                            src={run.photo_url}
+                            src={`${API_BASE}${run.photo_url}`}
                             alt="run"
                             style={{
                             width: '100%',
