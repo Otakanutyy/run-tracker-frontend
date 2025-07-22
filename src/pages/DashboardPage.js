@@ -74,7 +74,7 @@ const DashboardPage = () => {
                         }}
                         >
                         <img
-                            src={`${API_BASE}${run.photo_url}`}
+                            src={run.photo_url}
                             alt="run"
                             style={{
                             width: '100%',
