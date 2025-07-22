@@ -11,7 +11,8 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post('http://localhost:3000/api/auth/login', {
+      const API_BASE = process.env.REACT_APP_API_BASE_URL;
+    const res = await axios.post(`${API_BASE}/api/auth/login`, {
         email,
         password
       });

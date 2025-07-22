@@ -27,7 +27,9 @@ const AddRunForm = ({ onRunAdded }) => {
     if (photo) formData.append('photo', photo);
 
     try {
-      await axios.post('http://localhost:3000/api/runs', formData);
+      const API_BASE = process.env.REACT_APP_API_BASE_URL;
+      await axios.post(`${API_BASE}/api/runs`, formData);
+
       setSuccess(true);
       onRunAdded();  // callback to refresh list
       // Reset form

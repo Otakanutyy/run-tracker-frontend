@@ -11,18 +11,21 @@ const DashboardPage = () => {
   const [runs, setRuns] = useState([]);
 
   useEffect(() => {
+
     if (!user_id) return;
 
-    // Fetch summary stats
-    axios.get(`http://localhost:3000/api/summary?user_id=${user_id}`)
-      .then(res => setSummary(res.data))
-      .catch(() => setSummary(null));
+    const API_BASE = process.env.REACT_APP_API_BASE_URL;
 
-    // Fetch run list
-    axios.get(`http://localhost:3000/api/runs?user_id=${user_id}`)
-      .then(res => setRuns(res.data))
-      .catch(() => setRuns([]));
-  }, [user_id]);
+    axios.get(`${API_BASE}/api/summary?user_id=${user_id}`)
+        .then(res => setSummary(res.data))
+        .catch(() => setSummary(null));
+
+    axios.get(`${API_BASE}/api/runs?user_id=${user_id}`)
+        .then(res => setRuns(res.data))
+        .catch(() => setRuns([]));
+
+    }, [user_id]);
+
 
   return (
     <Box mt={4}>
@@ -42,9 +45,9 @@ const DashboardPage = () => {
       )}
     
         <AddRunForm onRunAdded={() => {
-            axios.get(`http://localhost:3000/api/summary?user_id=${user_id}`)
+            axios.get(`${API_BASE}/api/summary?user_id=${user_id}`)
                 .then(res => setSummary(res.data));
-            axios.get(`http://localhost:3000/api/runs?user_id=${user_id}`)
+            axios.get(`${API_BASE}/api/runs?user_id=${user_id}`)
                 .then(res => setRuns(res.data));
         }} />
 
